@@ -1,0 +1,19 @@
+{
+    "name": "fv-permissions-manager",
+    "version": "0.0.1",
+    "description": "The source code for the CE/Clients Permissions Manager/Generator Desktop Application",
+    "main": "built/main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build-ts": "tsc",
+        "electron": "electron built/main.js"
+    },
+    "author": "Allan Baptista (allan.marques@ymail.com)",
+    "license": "MIT",
+    "private": true,
+    "devDependencies": {
+        "electron": "^1.4.8",
+        "tslint": "^4.0.2",
+        "typescript": "^2.0.10"
+    }
+}
