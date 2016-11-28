@@ -2,9 +2,11 @@ import Electron = require('electron');
 import path = require('path');
 import url = require('url');
 
+require('electron-debug')({showDevTools: true});
+
 const { app, BrowserWindow } = Electron;
 
-let mainWindow: Electron.BrowserWindow = null;
+let mainWindow: Electron.BrowserWindow | null = null;
 
 function createMainWindow() {
     mainWindow = new BrowserWindow({
@@ -13,12 +15,10 @@ function createMainWindow() {
     });
 
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'ui/index.html'),
+        pathname: path.join(__dirname, '../ui/index.html'),
         protocol: 'file:',
         slashes: true
     }));
-
-    mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', () => { mainWindow = null; });
 }
