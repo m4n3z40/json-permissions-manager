@@ -137,7 +137,13 @@ gulp.task('watch', done => runSequence(
 gulp.task('run', () => run('electron .').exec());
 
 gulp.task('watch-and-run', ['watch'], (() => {
-    const electron = electronConnect.server.create({stopOnClose: true});
+    const electron = electronConnect.server.create({
+        spawnOpt: {
+            stdio: 'inherit',
+            env: Object.assign({ CONNECT: '1' }, process.env)
+        },
+        stopOnClose: true
+    });
 
     return () => {
         electron.start();

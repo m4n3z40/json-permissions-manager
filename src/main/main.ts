@@ -3,7 +3,6 @@ import { join } from 'path';
 import { format } from 'url';
 require('electron-debug')({showDevTools: true});
 
-const electronConnect = require('electron-connect');
 const { app, BrowserWindow } = Electron;
 let mainWindow: Electron.BrowserWindow | null = null;
 let reloadServer: any = null;
@@ -14,6 +13,11 @@ function createMainWindow() {
         height: 768
     });
 
+    if (process.env.CONNECT === '1') {
+        // If we have a connect environment (auto-reload), set the connection
+        reloadServer = require('electron-connect').client.create(mainWindow, {sendBounds: true});
+    }
+
     mainWindow.loadURL(format({
         pathname: join(__dirname, '../ui/index.html'),
         protocol: 'file:',
@@ -21,8 +25,6 @@ function createMainWindow() {
     }));
 
     mainWindow.on('closed', () => { mainWindow = null; });
-
-    reloadServer = electronConnect.client.create(mainWindow);
 }
 
 app.on('ready', createMainWindow);
