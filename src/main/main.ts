@@ -1,26 +1,28 @@
-import Electron = require('electron');
-import path = require('path');
-import url = require('url');
-
+import * as Electron from 'electron';
+import { join } from 'path';
+import { format } from 'url';
 require('electron-debug')({showDevTools: true});
 
+const electronConnect = require('electron-connect');
 const { app, BrowserWindow } = Electron;
-
 let mainWindow: Electron.BrowserWindow | null = null;
+let reloadServer: any = null;
 
 function createMainWindow() {
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600
+        width: 1024,
+        height: 768
     });
 
-    mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, '../ui/index.html'),
+    mainWindow.loadURL(format({
+        pathname: join(__dirname, '../ui/index.html'),
         protocol: 'file:',
         slashes: true
     }));
 
     mainWindow.on('closed', () => { mainWindow = null; });
+
+    reloadServer = electronConnect.client.create(mainWindow);
 }
 
 app.on('ready', createMainWindow);

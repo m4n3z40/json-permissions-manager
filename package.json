@@ -2,30 +2,41 @@
   "name": "fv-permissions-manager",
   "version": "0.0.1",
   "description": "The source code for the CE/Clients Permissions Manager/Generator Desktop Application",
-  "main": "built/main.js",
+  "main": "built/main/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "gulp",
-    "electron": "electron built/main/main.js"
+    "watch": "gulp watch",
+    "app": "gulp && gulp run",
+    "start": "gulp watch-and-run"
   },
   "author": "Allan Baptista (allan.marques@ymail.com)",
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@types/lodash": "^4.14.41",
     "browserify": "^13.1.1",
     "del": "^2.2.2",
     "devtron": "^1.4.0",
     "electron": "^1.4.8",
+    "electron-connect": "^0.6.1",
     "gulp": "^3.9.1",
+    "gulp-changed": "^1.3.2",
+    "gulp-newer": "^1.3.0",
     "gulp-replace": "^0.5.4",
+    "gulp-run": "^1.7.1",
     "gulp-sass": "^2.3.2",
     "gulp-typescript": "^3.1.3",
+    "gulp-util": "^3.0.7",
+    "run-sequence": "^1.2.2",
     "tsify": "^2.0.3",
     "tslint": "^4.0.2",
     "typescript": "^2.0.10",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
   },
   "dependencies": {
-    "electron-debug": "^1.1.0"
+    "electron-debug": "^1.1.0",
+    "lodash": "^4.17.2"
   }
 }
