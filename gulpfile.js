@@ -4,6 +4,8 @@ const ts = require('gulp-typescript');
 const browserify = require('browserify');
 const tsify = require('tsify');
 const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const sourcemaps = require('gulp-sourcemaps');
 const watchify = require('watchify');
 const gutil = require('gulp-util');
 const sass = require('gulp-sass');
@@ -16,6 +18,18 @@ const electronConnect = require('electron-connect');
 const _ = require('lodash');
 const { paths, buildPaths } = require('./src/config/build');
 
+var electron = null;
+
+function electronSend(command) {
+    return _.debounce(() => {
+        if (!electron || !(command in electron)) {
+            return;
+        }
+
+        return electron[command]();
+    }, 1000, {leading: true, trailing: false});
+}
+
 gulp.task('clean', () => del([buildPaths.root]));
 
 gulp.task('main-scripts', (() => {
@@ -23,7 +37,8 @@ gulp.task('main-scripts', (() => {
 
     return () => mainTSProject.src()
         .pipe(mainTSProject())
-        .js.pipe(gulp.dest(buildPaths.main.scripts));
+        .js.pipe(gulp.dest(buildPaths.main.scripts))
+        .on('end', electronSend('restart'));
 })());
 
 gulp.task('watch:main-scripts', ['main-scripts'], () => {
@@ -33,6 +48,7 @@ gulp.task('watch:main-scripts', ['main-scripts'], () => {
 function createUIScriptsBundler() {
     return browserify({
         basedir: '.',
+        debug: true,
         entries: [paths.ui.scriptsEntrypoint],
         cache: {},
         packageCache: {}
@@ -46,7 +62,11 @@ function bundleUIScripts(browserifyBundler) {
     return browserifyBundler
         .bundle()
         .pipe(source(outFileName))
-        .pipe(gulp.dest(buildPaths.ui.scripts));
+        .pipe(buffer())
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(buildPaths.ui.scripts))
+        .on('end', electronSend('reload'));
 }
 
 gulp.task('ui-scripts', _.flow(createUIScriptsBundler, bundleUIScripts));
@@ -63,8 +83,11 @@ gulp.task('watch:ui-scripts', ['ui-scripts'], (() => {
 
 gulp.task('ui-styles', () => {
     return gulp.src(paths.ui.stylesEntrypoint)
-        .pipe(sass({outputStyle: 'extended'}).on('error', sass.logError))
-        .pipe(gulp.dest(buildPaths.ui.styles));
+        .pipe(sourcemaps.init())
+        .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(buildPaths.ui.styles))
+        .on('end', electronSend('reload'));
 });
 
 gulp.task('watch:ui-styles', ['ui-styles'], () => {
@@ -81,7 +104,8 @@ gulp.task('ui-pages', (() => {
         .pipe(changed(buildPaths.ui.pages))
         .pipe(replace(uiSASSRelPath, uiCSSRelPath))
         .pipe(replace(uiTSRelPath, uiJSRelPath))
-        .pipe(gulp.dest(buildPaths.ui.pages));
+        .pipe(gulp.dest(buildPaths.ui.pages))
+        .on('end', electronSend('reload'));
 })());
 
 gulp.task('watch:ui-pages', ['ui-pages'], () => {
@@ -101,7 +125,8 @@ gulp.task('watch:ui-images', ['ui-images'], () => {
 gulp.task('ui-fonts', () => {
     return gulp.src(paths.ui.fonts)
         .pipe(newer(buildPaths.ui.fonts))
-        .pipe(gulp.dest(buildPaths.ui.fonts));
+        .pipe(gulp.dest(buildPaths.ui.fonts))
+        .on('end', electronSend('reload'));
 });
 
 gulp.task('watch:ui-fonts', ['ui-fonts'], () => {
@@ -136,8 +161,8 @@ gulp.task('watch', done => runSequence(
 
 gulp.task('run', () => run('electron .').exec());
 
-gulp.task('watch-and-run', ['watch'], (() => {
-    const electron = electronConnect.server.create({
+gulp.task('watch-and-run', ['watch'], done => {
+    electron = electronConnect.server.create({
         spawnOpt: {
             stdio: 'inherit',
             env: Object.assign({ CONNECT: '1' }, process.env)
@@ -145,18 +170,9 @@ gulp.task('watch-and-run', ['watch'], (() => {
         stopOnClose: true
     });
 
-    return () => {
-        electron.start();
+    electron.start();
 
-        gulp.watch(paths.main.scripts, electron.restart);
-        gulp.watch([
-            paths.ui.scripts,
-            paths.ui.styles,
-            paths.ui.pages,
-            paths.ui.images,
-            paths.ui.fonts
-        ], electron.reload);
-    };
-})());
+    done();
+});
 
 gulp.task('default', ['build']);

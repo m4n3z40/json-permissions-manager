@@ -4,6 +4,7 @@
         "module": "commonjs",
         "target": "es2015",
         "sourceMap": false,
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "experimentalDecorators": true
     }
 }

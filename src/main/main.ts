@@ -1,7 +1,7 @@
 import * as Electron from 'electron';
 import { join } from 'path';
 import { format } from 'url';
-require('electron-debug')({showDevTools: true});
+require('electron-debug')();
 
 const { app, BrowserWindow } = Electron;
 let mainWindow: Electron.BrowserWindow | null = null;

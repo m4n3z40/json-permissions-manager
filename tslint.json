@@ -18,10 +18,7 @@
             "check-open-brace",
             "check-whitespace"
         ],
-        "quotemark": [
-            true,
-            "single"
-        ],
+        "quotemark": [true, "single", "jsx-double"],
         "semicolon": [
             true,
             "always"
@@ -63,10 +60,7 @@
             "check-open-brace",
             "check-whitespace"
         ],
-        "quotemark": [
-            true,
-            "single"
-        ],
+        "quotemark": [true, "single", "jsx-double"],
         "semicolon": [
             true,
             "always"

@@ -3,7 +3,9 @@
         "baseUrl": "../../node_modules",
         "module": "commonjs",
         "target": "es2015",
-        "sourceMap": false,
-        "strictNullChecks": true
+        "sourceMap": true,
+        "strictNullChecks": true,
+        "jsx": "react",
+        "experimentalDecorators": true
     }
 }
