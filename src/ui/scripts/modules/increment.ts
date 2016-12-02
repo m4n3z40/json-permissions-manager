@@ -1,21 +1,33 @@
-import { Action } from 'redux';
+import { Reducer, ActionCreator, Action } from 'redux';
 
-export const INCREMENT = 'permissions-manager/increment/INCREMENT';
-export const DECREMENT = 'permissions-manager/increment/DECREMENT';
-export const RESET = 'permissions-manager/increment/RESET';
+export type IncrementActionCreator = ActionCreator<Action>;
+export type DecrementActionCreator = ActionCreator<Action>;
+export type ResetActionCreator = ActionCreator<Action>;
+
+export interface IncrementActionCreators {
+    increment: IncrementActionCreator;
+    decrement: DecrementActionCreator;
+    reset: ResetActionCreator;
+};
 
 export interface IncrementState {
     value: number;
 }
 
+export type IncrementReducer = Reducer<IncrementState>;
+
+export const INCREMENT = 'permissions-manager/increment/INCREMENT';
+export const DECREMENT = 'permissions-manager/increment/DECREMENT';
+export const RESET = 'permissions-manager/increment/RESET';
+
 const INITIAL_STATE: IncrementState = {
     value: 0
 };
 
-export default function reducer(
+export default <IncrementReducer> ((
     state: IncrementState = INITIAL_STATE,
     action: Action = {type: null}
-): IncrementState {
+): IncrementState  => {
     switch (action.type) {
         case INCREMENT:
             return Object.assign({}, state, {value: state.value + 1});
@@ -26,16 +38,16 @@ export default function reducer(
         default:
             return state;
     }
-}
+});
 
-export function increment(): Action {
-    return { type: INCREMENT };
-}
+export const increment: IncrementActionCreator = (): Action => ({
+    type: INCREMENT
+});
 
-export function decrement(): Action {
-    return { type: DECREMENT };
-}
+export const decrement: DecrementActionCreator = (): Action => ({
+    type: DECREMENT
+});
 
-export function reset(): Action {
-    return { type: RESET };
-}
+export const reset: ResetActionCreator = (): Action => ({
+    type: RESET
+});

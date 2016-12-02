@@ -1,12 +1,14 @@
-import { combineReducers, ReducersMapObject, Reducer, Store } from 'redux';
-import increment, { IncrementState } from './increment';
+import { combineReducers, ReducersMapObject, Reducer } from 'redux';
+import increment, { IncrementReducer, IncrementState } from './increment';
 
-export interface RootReducer extends ReducersMapObject {
-    increment: Reducer<IncrementState>;
+export interface AllReducers extends ReducersMapObject {
+    increment: IncrementReducer;
 }
 
-export interface RootStore {
+export interface RootState {
     increment: IncrementState;
 }
 
-export default combineReducers({increment});
+export type RootReducer = Reducer<RootState>;
+
+export default <RootReducer>combineReducers(<AllReducers>{increment});
