@@ -1,6 +1,6 @@
 # React Typescript Starter
 
-A Electron App boilerplate that hooks up Typescript, React, Redux & Photon.
+A Electron app framework that hooks up Typescript, React, Redux & Photon.
 
 ### Development
 
