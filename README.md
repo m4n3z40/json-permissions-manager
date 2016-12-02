@@ -10,7 +10,6 @@ npm run build
 ```
 
 To run the app (requires built source):
-To start watchers and run app:
 ```sh
 npm run app
 ```
