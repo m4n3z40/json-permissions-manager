@@ -9,7 +9,7 @@ To build the source:
 npm run build
 ```
 
-To run the app (requires built source):
+To run the app:
 ```sh
 npm run app
 ```
