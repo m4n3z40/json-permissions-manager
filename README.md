@@ -1,6 +1,6 @@
-# React Typescript Starter
+# Squark
 
-A Electron app framework that hooks up Typescript, React, Redux & Photon.
+An Electron app framework that hooks up Typescript, React, Redux & Photon.
 
 ### Development
 
