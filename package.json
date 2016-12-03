@@ -14,6 +14,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@types/classnames": "0.0.32",
     "@types/electron": "^1.4.29",
     "@types/lodash": "^4.14.41",
     "@types/react": "^0.14.52",
@@ -22,6 +23,7 @@
     "@types/react-router": "^2.0.41",
     "@types/redux": "^3.6.31",
     "browserify": "^13.1.1",
+    "classnames": "^2.2.5",
     "del": "^2.2.2",
     "devtron": "^1.4.0",
     "electron": "^1.4.10",

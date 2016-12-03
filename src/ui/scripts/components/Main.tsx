@@ -1,19 +1,16 @@
 import * as React from 'react';
 import { Route } from 'react-router';
 import { Dispatch, ActionCreatorsMapObject, bindActionCreators } from 'redux';
-import {
-    MapDispatchToPropsFunction,
-    MapStateToProps,
-    connect
-} from 'react-redux';
+import { MapDispatchToPropsFunction, MapStateToProps, connect } from 'react-redux';
 import { RootState } from '../modules';
-import {
-    IncrementState,
-    IncrementActionCreators,
-    increment,
-    decrement,
-    reset
-} from '../modules/increment';
+import { IncrementState, IncrementActionCreators, increment, decrement, reset } from '../modules/increment';
+import Window from './photon/base/Window';
+import WindowContent from './photon/base/WindowContent';
+import HeaderToolbar from './photon/bars/HeaderToolbar';
+import FooterToolbar from './photon/bars/FooterToolbar';
+import ToolbarActions from './photon/bars/ToolbarActions';
+import PaneGroup from './photon/grid/PaneGroup';
+import Pane from './photon/grid/Pane';
 
 type MainMapStateToProps = MapStateToProps<IncrementState, any>;
 type MainMapDispatchToProps =  MapDispatchToPropsFunction<IncrementActionCreators, any>;
@@ -34,11 +31,9 @@ const mapDispatchToProps: MainMapDispatchToProps = (
 
 export const Main: React.StatelessComponent<MainProps> = (props: MainProps) => {
     return (
-        <div className="window">
-            <header className="toolbar toolbar-header">
-                <h1 className="title">Incrementor</h1>
-
-                <div className="toolbar-actions">
+        <Window>
+            <HeaderToolbar title="Incrementor">
+                <ToolbarActions>
                     <div className="btn-group">
                         <button className="btn btn-default" onClick={props.increment}>
                             <span className="icon icon-plus-circled"></span>
@@ -50,11 +45,11 @@ export const Main: React.StatelessComponent<MainProps> = (props: MainProps) => {
                             <span className="icon icon-cancel-circled"></span>
                         </button>
                     </div>
-                </div>
-            </header>
-            <main className="window-content">
-                <div className="pane-group">
-                    <div className="pane-sm sidebar">
+                </ToolbarActions>
+            </HeaderToolbar>
+            <WindowContent>
+                <PaneGroup>
+                    <Pane width="sm" className="sidebar">
                         <nav className="nav-group">
                             <h5 className="nav-group-title">Fake Categories</h5>
                             <a className="nav-group-item">
@@ -62,18 +57,19 @@ export const Main: React.StatelessComponent<MainProps> = (props: MainProps) => {
                                 Fake Item
                             </a>
                         </nav>
-                    </div>
-                    <div className="pane padded">
-                        <h1>Value is: {props.value}</h1>
-                    </div>
-                </div>
-            </main>
-            <footer className="toolbar toolbar-footer">
-                <h1 className="title">
-                    {new Date().getFullYear()} &copy; All Rights Reserved.
-                </h1>
-            </footer>
-        </div>
+                    </Pane>
+                    <Pane className="padded">
+                        <h1 className="text-center">
+                            Value is: {props.value}
+                        </h1>
+                    </Pane>
+                </PaneGroup>
+            </WindowContent>
+            <FooterToolbar title={(
+                `${new Date().getFullYear()} &copy; All Rights Reserved.`
+            )}>
+            </FooterToolbar>
+        </Window>
     );
 };
 
