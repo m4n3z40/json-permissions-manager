@@ -1,20 +1,31 @@
 import * as React from 'react';
-import { Route } from 'react-router';
-import { Dispatch, ActionCreatorsMapObject, bindActionCreators } from 'redux';
+import { Dispatch, bindActionCreators } from 'redux';
 import { MapDispatchToPropsFunction, MapStateToProps, connect } from 'react-redux';
 import { RootState } from '../modules';
-import { IncrementState, IncrementActionCreators, increment, decrement, reset } from '../modules/increment';
-import Window from './photon/base/Window';
-import WindowContent from './photon/base/WindowContent';
-import HeaderToolbar from './photon/bars/HeaderToolbar';
-import FooterToolbar from './photon/bars/FooterToolbar';
-import ToolbarActions from './photon/bars/ToolbarActions';
-import PaneGroup from './photon/grid/PaneGroup';
-import Pane from './photon/grid/Pane';
+import {
+    IncrementState,
+    IncrementActionCreators,
+    increment,
+    decrement,
+    reset
+} from '../modules/increment';
+import {
+    Window,
+    WindowContent,
+    HeaderToolbar,
+    FooterToolbar,
+    ToolbarActions,
+    PaneGroup,
+    Pane,
+    ButtonGroup,
+    Button,
+    Icon
+} from './photon';
 
 type MainMapStateToProps = MapStateToProps<IncrementState, any>;
 type MainMapDispatchToProps =  MapDispatchToPropsFunction<IncrementActionCreators, any>;
 type MainProps = IncrementState & IncrementActionCreators;
+type MainComponent = React.StatelessComponent<MainProps>;
 
 const mapStateToProps: MainMapStateToProps = (
     state: RootState
@@ -29,22 +40,22 @@ const mapDispatchToProps: MainMapDispatchToProps = (
     dispatch
 ));
 
-export const Main: React.StatelessComponent<MainProps> = (props: MainProps) => {
+export const Main: MainComponent = (props: MainProps) => {
     return (
         <Window>
             <HeaderToolbar title="Incrementor">
                 <ToolbarActions>
-                    <div className="btn-group">
-                        <button className="btn btn-default" onClick={props.increment}>
-                            <span className="icon icon-plus-circled"></span>
-                        </button>
-                        <button className="btn btn-default" onClick={props.decrement}>
-                            <span className="icon icon-minus-circled"></span>
-                        </button>
-                        <button className="btn btn-default" onClick={props.reset}>
-                            <span className="icon icon-cancel-circled"></span>
-                        </button>
-                    </div>
+                    <ButtonGroup>
+                        <Button onClick={props.increment}>
+                            <Icon name="plus-circled" />
+                        </Button>
+                        <Button onClick={props.decrement}>
+                            <Icon name="minus-circled" />
+                        </Button>
+                        <Button onClick={props.reset}>
+                            <Icon name="cancel-circled" />
+                        </Button>
+                    </ButtonGroup>
                 </ToolbarActions>
             </HeaderToolbar>
             <WindowContent>

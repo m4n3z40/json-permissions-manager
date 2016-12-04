@@ -5,6 +5,8 @@
         "target": "es2015",
         "sourceMap": false,
         "strictNullChecks": true,
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true
     }
 }

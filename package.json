@@ -8,7 +8,8 @@
     "build": "gulp",
     "watch": "gulp watch",
     "app": "gulp && gulp run",
-    "start": "gulp watch-and-run"
+    "start": "gulp watch-and-run",
+    "lint": "tslint --project src"
   },
   "author": "Allan Baptista (allan.marques@ymail.com)",
   "license": "MIT",
