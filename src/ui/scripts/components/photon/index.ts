@@ -15,3 +15,4 @@ export { default as ButtonGroup } from './buttons/ButtonGroup';
 export * from './grid/types';
 export { default as Pane } from './grid/Pane';
 export { default as PaneGroup } from './grid/PaneGroup';
+export { default as SidebarPane } from './grid/SidebarPane';

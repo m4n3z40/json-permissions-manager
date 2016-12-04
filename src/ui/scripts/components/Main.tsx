@@ -17,6 +17,7 @@ import {
     ToolbarActions,
     PaneGroup,
     Pane,
+    SidebarPane,
     ButtonGroup,
     Button,
     Icon
@@ -60,7 +61,7 @@ export const Main: MainComponent = (props: MainProps) => {
             </HeaderToolbar>
             <WindowContent>
                 <PaneGroup>
-                    <Pane width="sm" className="sidebar">
+                    <SidebarPane>
                         <nav className="nav-group">
                             <h5 className="nav-group-title">Fake Categories</h5>
                             <a className="nav-group-item">
@@ -68,7 +69,7 @@ export const Main: MainComponent = (props: MainProps) => {
                                 Fake Item
                             </a>
                         </nav>
-                    </Pane>
+                    </SidebarPane>
                     <Pane className="padded">
                         <h1 className="text-center">
                             Value is: {props.value}
