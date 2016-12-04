@@ -23,3 +23,12 @@ export { default as List } from './lists/List';
 export { default as ListHeader } from './lists/ListHeader';
 export { default as ListItem } from './lists/ListItem';
 export { default as MediaListItem } from './lists/MediaListItem';
+
+export * from './navs/types';
+export { default as Nav } from './navs/Nav';
+export { default as NavItem } from './navs/NavItem';
+export { default as NavTitle } from './navs/NavTitle';
+
+export * from './tabs/types';
+export { default as Tab } from './tabs/Tab';
+export { default as TabItem } from './tabs/TabItem';

@@ -21,11 +21,16 @@ import {
     ButtonGroup,
     Button,
     Icon,
+    Nav,
+    NavItem,
+    NavTitle,
     List,
     ListHeader,
     ListItem,
     MediaListItem,
-    Image
+    Image,
+    Tab,
+    TabItem
 } from './photon';
 
 type MainMapStateToProps = MapStateToProps<IncrementState, any>;
@@ -67,13 +72,13 @@ export const Main: MainComponent = (props: MainProps) => {
             <WindowContent>
                 <PaneGroup>
                     <SidebarPane>
-                        <nav className="nav-group">
-                            <h5 className="nav-group-title">Navigation</h5>
-                            <a className="nav-group-item">
-                                <span className="icon icon-home"></span>
+                        <Nav>
+                            <NavTitle>Navigation</NavTitle>
+                            <NavItem>
+                                <Icon name="home" />
                                 Some Item
-                            </a>
-                        </nav>
+                            </NavItem>
+                        </Nav>
                         <List>
                             <ListHeader>List</ListHeader>
                             <ListItem>
@@ -95,17 +100,20 @@ export const Main: MainComponent = (props: MainProps) => {
                             </MediaListItem>
                         </List>
                     </SidebarPane>
-                    <Pane className="padded">
+                    <Pane>
+                        <Tab>
+                            <TabItem onTabClose={() => {}}>Tab</TabItem>
+                            <TabItem onTabClose={() => {}} active>Tab active</TabItem>
+                            <TabItem>Tab (Not closable)</TabItem>
+                            <TabItem fixed><Icon name="plus" /></TabItem>
+                        </Tab>
                         <h1 className="text-center">
                             Value is: {props.value}
                         </h1>
                     </Pane>
                 </PaneGroup>
             </WindowContent>
-            <FooterToolbar title={(
-                `${new Date().getFullYear()} &copy; All Rights Reserved.`
-            )}>
-            </FooterToolbar>
+            <FooterToolbar title={`${new Date().getFullYear()} &copy; All Rights Reserved.`} />
         </Window>
     );
 };

@@ -11,8 +11,8 @@ const FooterToolbar: ToolbarComponent = (props: ToolbarProps) => {
 
     return (
         <footer {...props} className={classNames}>
-            {props.title ? <h1 className="title">{props.title}</h1> : null}
             {props.children}
+            {props.title ? <h1 className="title">{props.title}</h1> : null}
         </footer>
     );
 };
