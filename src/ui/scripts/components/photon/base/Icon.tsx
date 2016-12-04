@@ -3,7 +3,7 @@ import cx = require('classnames');
 import { IconComponent, IconProps } from './types';
 
 const Icon: IconComponent = (props: IconProps) => {
-    const classNames = cx(`icon icon-${props.name}`, {
+    const classNames = cx(`icon icon-${props.name}`, props.className, {
         'icon-text': props.precedesText
     });
 

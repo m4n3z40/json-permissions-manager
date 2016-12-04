@@ -18,3 +18,13 @@ export interface IconProps extends React.HTMLProps<HTMLSpanElement> {
 export interface IconComponent extends React.StatelessComponent<HTMLSpanElement> {
     (props: IconProps): React.ReactElement<HTMLSpanElement>;
 }
+
+export type ImageStyleVariation = 'default' | 'circle' | 'rounded';
+
+export interface ImageProps extends React.HTMLProps<HTMLImageElement> {
+    styleVariation?: ImageStyleVariation;
+}
+
+export interface ImageComponent extends React.StatelessComponent<HTMLImageElement> {
+    (props: ImageProps): React.ReactElement<HTMLImageElement>;
+}

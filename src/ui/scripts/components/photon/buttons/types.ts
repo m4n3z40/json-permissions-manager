@@ -4,13 +4,14 @@ export interface ButtonGroupComponent extends React.StatelessComponent<ButtonGro
     (props: ButtonGroupProps): React.ReactElement<HTMLElement>;
 }
 
-export type ButtonSize = 'normal' | 'large' | 'mini';
-export type ButtonVariations = 'default' | 'primary' | 'positive' | 'negative' | 'warning'
+export type ButtonSizeVariation = 'normal' | 'large' | 'mini';
+export type ButtonStyleVariation = 'default' | 'primary' | 'positive' | 'negative' | 'warning'
 
 export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
-    sizeVariation?: ButtonSize;
-    styleVariation?: ButtonVariations;
+    sizeVariation?: ButtonSizeVariation;
+    styleVariation?: ButtonStyleVariation;
     withinForm?: boolean;
+    active?: boolean;
 }
 
 export interface ButtonComponent extends React.StatelessComponent<ButtonProps> {

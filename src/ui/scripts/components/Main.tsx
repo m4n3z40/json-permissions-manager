@@ -20,7 +20,12 @@ import {
     SidebarPane,
     ButtonGroup,
     Button,
-    Icon
+    Icon,
+    List,
+    ListHeader,
+    ListItem,
+    MediaListItem,
+    Image
 } from './photon';
 
 type MainMapStateToProps = MapStateToProps<IncrementState, any>;
@@ -63,12 +68,32 @@ export const Main: MainComponent = (props: MainProps) => {
                 <PaneGroup>
                     <SidebarPane>
                         <nav className="nav-group">
-                            <h5 className="nav-group-title">Fake Categories</h5>
+                            <h5 className="nav-group-title">Navigation</h5>
                             <a className="nav-group-item">
                                 <span className="icon icon-home"></span>
-                                Fake Item
+                                Some Item
                             </a>
                         </nav>
+                        <List>
+                            <ListHeader>List</ListHeader>
+                            <ListItem>
+                                <p>Normal Item</p>
+                            </ListItem>
+                            <ListItem active>
+                                <p>Normal Item (active)</p>
+                            </ListItem>
+                            <MediaListItem>
+                                <Image
+                                    src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=32"
+                                    width="32px"
+                                    height="32px"
+                                />
+                                <div>
+                                    <strong>Media Item</strong>
+                                    <p>Lorem ipsum dolor sit amet.</p>
+                                </div>
+                            </MediaListItem>
+                        </List>
                     </SidebarPane>
                     <Pane className="padded">
                         <h1 className="text-center">
