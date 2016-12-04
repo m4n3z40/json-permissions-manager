@@ -4,6 +4,11 @@ An Electron app framework that hooks up Typescript, React, Redux & Photon.
 
 ### Development
 
+To run tslint:
+```sh
+npm run lint
+```
+
 To build the source:
 ```sh
 npm run build
