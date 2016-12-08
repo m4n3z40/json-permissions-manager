@@ -32,3 +32,12 @@ export { default as NavTitle } from './navs/NavTitle';
 export * from './tabs/types';
 export { default as Tab } from './tabs/Tab';
 export { default as TabItem } from './tabs/TabItem';
+
+export * from './tables/types';
+export { default as Table } from './tables/Table';
+export { default as TableHeader } from './tables/TableHeader';
+export { default as TableBody } from './tables/TableBody';
+export { default as TableFooter } from './tables/TableFooter';
+export { default as TableRow } from './tables/TableRow';
+export { default as TableCell } from './tables/TableCell';
+export { default as TableHeaderCell } from './tables/TableHeaderCell';
