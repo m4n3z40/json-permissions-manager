@@ -20,18 +20,12 @@ import {
     SidebarPane,
     ButtonGroup,
     Button,
-    Icon,
-    Nav,
-    NavItem,
-    NavTitle,
-    List,
-    ListHeader,
-    ListItem,
-    MediaListItem,
-    Image,
-    Tab,
-    TabItem
+    Icon
 } from './photon';
+import TableExample from './examples/TableExample';
+import TabExample from './examples/TabExample';
+import ListExample from './examples/ListExample';
+import NavExample from './examples/NavExample';
 
 type MainMapStateToProps = MapStateToProps<IncrementState, any>;
 type MainMapDispatchToProps =  MapDispatchToPropsFunction<IncrementActionCreators, any>;
@@ -72,44 +66,16 @@ export const Main: MainComponent = (props: MainProps) => {
             <WindowContent>
                 <PaneGroup>
                     <SidebarPane>
-                        <Nav>
-                            <NavTitle>Navigation</NavTitle>
-                            <NavItem>
-                                <Icon name="home" />
-                                Some Item
-                            </NavItem>
-                        </Nav>
-                        <List>
-                            <ListHeader>List</ListHeader>
-                            <ListItem>
-                                <p>Normal Item</p>
-                            </ListItem>
-                            <ListItem active>
-                                <p>Normal Item (active)</p>
-                            </ListItem>
-                            <MediaListItem>
-                                <Image
-                                    src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=32"
-                                    width="32px"
-                                    height="32px"
-                                />
-                                <div>
-                                    <strong>Media Item</strong>
-                                    <p>Lorem ipsum dolor sit amet.</p>
-                                </div>
-                            </MediaListItem>
-                        </List>
+                        <NavExample />
+                        <ListExample />
                     </SidebarPane>
                     <Pane>
-                        <Tab>
-                            <TabItem onTabClose={() => {}}>Tab</TabItem>
-                            <TabItem onTabClose={() => {}} active>Tab active</TabItem>
-                            <TabItem>Tab (Not closable)</TabItem>
-                            <TabItem fixed><Icon name="plus" /></TabItem>
-                        </Tab>
+                        <TabExample />
                         <h1 className="text-center">
                             Value is: {props.value}
                         </h1>
+                        <hr/>
+                        <TableExample />
                     </Pane>
                 </PaneGroup>
             </WindowContent>
