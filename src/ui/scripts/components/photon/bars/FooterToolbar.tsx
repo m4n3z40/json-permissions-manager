@@ -8,9 +8,11 @@ const FooterToolbar: ToolbarComponent = (props: ToolbarProps) => {
         props.className,
         {'toolbar-borderless': props.borderless}
     );
+    const rest = Object.assign({}, props);
+    delete rest.borderless;
 
     return (
-        <footer {...props} className={classNames}>
+        <footer {...rest} className={classNames}>
             {props.children}
             {props.title ? <h1 className="title">{props.title}</h1> : null}
         </footer>

@@ -26,6 +26,7 @@ import TableExample from './examples/TableExample';
 import TabExample from './examples/TabExample';
 import ListExample from './examples/ListExample';
 import NavExample from './examples/NavExample';
+import FormExample from './examples/FormExample';
 
 type MainMapStateToProps = MapStateToProps<IncrementState, any>;
 type MainMapDispatchToProps =  MapDispatchToPropsFunction<IncrementActionCreators, any>;
@@ -67,6 +68,7 @@ export const Main: MainComponent = (props: MainProps) => {
                 <PaneGroup>
                     <SidebarPane>
                         <NavExample />
+                        <hr />
                         <ListExample />
                     </SidebarPane>
                     <Pane>
@@ -74,7 +76,9 @@ export const Main: MainComponent = (props: MainProps) => {
                         <h1 className="text-center">
                             Value is: {props.value}
                         </h1>
-                        <hr/>
+                        <hr />
+                        <FormExample />
+                        <hr />
                         <TableExample />
                     </Pane>
                 </PaneGroup>

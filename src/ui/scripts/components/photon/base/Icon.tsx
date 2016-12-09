@@ -6,8 +6,11 @@ const Icon: IconComponent = (props: IconProps) => {
     const classNames = cx(`icon icon-${props.name}`, props.className, {
         'icon-text': props.precedesText
     });
+    const rest = Object.assign({}, props);
+    delete rest.name;
+    delete rest.precedesText;
 
-    return <span {...props} className={classNames} />;
+    return <span {...rest} className={classNames} />;
 };
 
 Icon.propTypes = {

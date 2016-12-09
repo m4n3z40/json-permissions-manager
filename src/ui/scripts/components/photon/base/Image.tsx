@@ -4,8 +4,10 @@ import { ImageComponent, ImageProps } from './types';
 
 const Image: ImageComponent = (props: ImageProps) => {
     const classNames = cx(`img img-${props.styleVariation}`, props.className);
+    const rest = Object.assign({}, props);
+    delete rest.styleVariation;
 
-    return <img {...props} className={classNames} />;
+    return <img {...rest} className={classNames} />;
 };
 
 export default Image;

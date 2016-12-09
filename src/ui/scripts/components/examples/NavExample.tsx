@@ -1,11 +1,7 @@
 import * as React from 'react';
-import { NavProps, Nav, NavTitle, NavItem, Icon } from '../photon';
+import { Nav, NavTitle, NavItem, Icon } from '../photon';
 
-interface NavExampleComponent extends React.StatelessComponent<NavProps> {
-    (props: NavProps): React.ReactElement<HTMLElement>;
-}
-
-const NavExample: NavExampleComponent = () => (
+const NavExample = () => (
     <Nav>
         <NavTitle>Navigation</NavTitle>
         <NavItem>

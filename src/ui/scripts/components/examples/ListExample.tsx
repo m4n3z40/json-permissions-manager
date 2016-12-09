@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-    ListProps,
     List,
     ListHeader,
     ListItem,
@@ -8,11 +7,7 @@ import {
     Image
 } from '../photon';
 
-interface ListExampleComponent extends React.StatelessComponent<ListProps> {
-    (props: ListProps): React.ReactElement<HTMLUListElement>;
-}
-
-const ListExample: ListExampleComponent = () => (
+const ListExample = () => (
     <List>
         <ListHeader>List</ListHeader>
         <ListItem>

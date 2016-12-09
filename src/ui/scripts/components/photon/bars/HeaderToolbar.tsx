@@ -8,9 +8,11 @@ const HeaderToolbar: ToolbarComponent = (props: ToolbarProps) => {
         props.className,
         {'toolbar-borderless': props.borderless}
     );
+    const rest = Object.assign({}, props);
+    delete rest.borderless;
 
     return (
-        <header {...props} className={classNames}>
+        <header {...rest} className={classNames}>
             {props.title ? <h1 className="title">{props.title}</h1> : null}
             {props.children}
         </header>

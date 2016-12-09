@@ -1,11 +1,7 @@
 import * as React from 'react';
-import { TabProps, Tab, TabItem, Icon } from '../photon';
+import { Tab, TabItem, Icon } from '../photon';
 
-interface TabExampleComponent extends React.StatelessComponent<TabProps> {
-    (props: TabProps): React.ReactElement<HTMLDivElement>;
-}
-
-const TabExample: TabExampleComponent = () => (
+const TabExample = () => (
     <Tab>
         <TabItem onTabClose={() => {}}>Tab</TabItem>
         <TabItem onTabClose={() => {}} active>Tab active</TabItem>

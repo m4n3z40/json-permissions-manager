@@ -8,9 +8,13 @@ const TabItem: TabItemComponent = (props: TabItemProps) => {
         active: props.active,
         'tab-item-fixed': props.fixed
     });
+    const rest = Object.assign({}, props);
+    delete rest.onTabClose;
+    delete rest.fixed;
+    delete rest.active;
 
     return (
-        <div {...props} className={classNames}>
+        <div {...rest} className={classNames}>
             {
                 props.onTabClose ?
                     <Icon

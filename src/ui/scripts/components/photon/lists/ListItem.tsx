@@ -6,9 +6,11 @@ const ListItem: ListItemComponent = (props: ListItemProps) => {
     const classNames = cx('list-group-item', props.className, {
         active: props.active
     });
+    const rest = Object.assign({}, props);
+    delete rest.active;
 
     return (
-        <li {...props} className={classNames}>
+        <li {...rest} className={classNames}>
             {props.children}
         </li>
     );

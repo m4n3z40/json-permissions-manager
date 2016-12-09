@@ -38,11 +38,16 @@ function addChildrenClasses(props: MediaListItemProps): innerAddChildrenClasses 
     };
 }
 
-const MediaListItem: MediaListItemComponent = (props: MediaListItemProps) => (
-    <ListItem {...props}>
-        {Children.map(props.children, addChildrenClasses(props))}
-    </ListItem>
-);
+const MediaListItem: MediaListItemComponent = (props: MediaListItemProps) => {
+    const rest = Object.assign({}, props);
+    delete rest.imageAlignment;
+
+    return (
+        <ListItem {...rest}>
+            {Children.map(props.children, addChildrenClasses(props))}
+        </ListItem>
+    );
+};
 
 MediaListItem.defaultProps = {
     imageAlignment: 'left'

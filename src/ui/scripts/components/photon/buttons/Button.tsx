@@ -32,9 +32,13 @@ const Button: ButtonComponent = (props: ButtonProps) => {
         props.className
     );
     const totalChildren = Children.count(props.children);
+    const rest = Object.assign({}, props);
+    delete rest.sizeVariation;
+    delete rest.styleVariation;
+    delete rest.withinForm;
 
     return (
-        <button {...props} className={className}>
+        <button {...rest} className={className}>
             {Children.map(props.children, addClassToPrefixIcons(totalChildren))}
         </button>
     );
