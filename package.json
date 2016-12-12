@@ -1,7 +1,7 @@
 {
-  "name": "fv-permissions-manager",
+  "name": "json-permissions-manager",
   "version": "0.0.1",
-  "description": "The source code for the CE/Clients Permissions Manager/Generator Desktop Application",
+  "description": "A desktop app to manage JSON Permission files",
   "main": "built/main/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

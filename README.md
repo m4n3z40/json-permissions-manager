@@ -1,6 +1,8 @@
-# Squark
+# JSON Permissions Manager
 
-An Electron app framework that hooks up Typescript, React, Redux & Photon.
+A desktop app to manage JSON Permission files. You probably don't need this.
+
+Built with [Squark.](https://github.com/m4n3z40/Squark)
 
 ### Development
 
@@ -28,13 +30,3 @@ To start watchers and run app:
 ```sh
 npm start
 ```
-
-### TODO
-
-- [x] Initial scaffolding
-- [ ] Introduce tests
-- [ ] Introduce packaging tasks
-- [ ] Create React components for Photon components
-- [ ] Extract components and styles their own modules (?)
-- [ ] Introduce documentation
-- [ ] Create module/script to generate Squark Apps (maybe a yeoman generator?)
