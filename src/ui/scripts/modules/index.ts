@@ -1,14 +1,14 @@
 import { combineReducers, ReducersMapObject, Reducer } from 'redux';
-import increment, { IncrementReducer, IncrementState } from './increment';
+import files, { FilesReducer, FilesState } from '../modules/files';
 
 export interface AllReducers extends ReducersMapObject {
-    increment: IncrementReducer;
+    files: FilesReducer;
 }
 
 export interface RootState {
-    increment: IncrementState;
+    files: FilesState;
 }
 
 export type RootReducer = Reducer<RootState>;
 
-export default <RootReducer>combineReducers(<AllReducers>{increment});
+export default <RootReducer>combineReducers(<AllReducers>{files});

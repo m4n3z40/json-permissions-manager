@@ -6,16 +6,16 @@ import Icon from '../base/Icon';
 
 const { Children, cloneElement } = React;
 
-interface innerAddClassToPrefixIcons {
+interface InnerAddClassToPrefixIcons {
     (child: React.ReactChild, index: number): React.ReactChild;
 }
 
-function addClassToPrefixIcons(totalChildren: number): innerAddClassToPrefixIcons {
+function addClassToPrefixIcons(totalChildren: number): InnerAddClassToPrefixIcons {
     return (child, index) => {
         if (typeof child === 'object' && child.type === Icon) {
             return cloneElement<IconProps, HTMLSpanElement>(
                 child as React.DOMElement<IconProps, HTMLSpanElement>,
-                {precedesText: totalChildren > 0 && index === 0}
+                {precedesText: totalChildren > 1 && index === 0}
             );
         }
 

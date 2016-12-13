@@ -8,7 +8,7 @@ export type PaneHSize = 'full' | 'sm' | 'mini' | 'one-fourth' | 'one-third';
 
 export interface PaneProps extends React.HTMLProps<HTMLElement> {
     hSize?: PaneHSize;
-};
+}
 
 export interface PaneComponent extends React.StatelessComponent<PaneProps> {
     (props: PaneProps): React.ReactElement<HTMLElement>;
